@@ -520,11 +520,75 @@
     transform: translateY(0);
   }
 
+  /* COMMUNITY */
+  #community { background: var(--bg2); }
+
+  .community-card {
+    margin-top: 3rem;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .community-card-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .discord-icon {
+    width: 52px;
+    height: 52px;
+    background: #5865F2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .community-card-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .community-card-text p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .btn-discord {
+    background: #5865F2;
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .btn-discord:hover { background: #4752C4; transform: translateY(-2px); }
+
   @media (max-width: 640px) {
     nav { padding: 0 1.25rem; }
     .nav-links { display: none; }
     .hero-stats { gap: 2rem; }
     .patch-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .community-card { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
   }
 </style>
 </head>
@@ -536,6 +600,7 @@
     <li><a href="#features">features</a></li>
     <li><a href="#commands">commands</a></li>
     <li><a href="#patchnotes">updates</a></li>
+    <li><a href="#community">community</a></li>
   </ul>
   <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="nav-cta" target="_blank">add to discord</a>
 </nav>
@@ -554,6 +619,10 @@
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <a href="#features" class="btn-secondary">see what it does</a>
+    <a href="https://discord.gg/5YjWhDCRCh" class="btn-discord" target="_blank">
+      <svg width="18" height="14" viewBox="0 0 28 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M23.7188 1.76563C21.9375 0.9375 20.0313 0.328125 18.0469 0C17.8125 0.421875 17.5313 0.984375 17.3438 1.42188C15.2344 1.10938 13.1406 1.10938 11.0625 1.42188C10.875 0.984375 10.5938 0.421875 10.3594 0C8.375 0.328125 6.45313 0.9375 4.67188 1.76563C1.07813 7.17188 0.09375 12.4219 0.578125 17.6094C2.9375 19.3438 5.21875 20.3906 7.46875 21.0938C8.03125 20.3281 8.53125 19.5 8.95313 18.625C8.125 18.3125 7.33125 17.9219 6.57813 17.4531C6.76563 17.3125 6.95313 17.1563 7.125 17C11.625 19.0625 16.4063 19.0625 20.875 17C21.0469 17.1563 21.2344 17.3125 21.4219 17.4531C20.6688 17.9219 19.875 18.3125 19.0469 18.625C19.4688 19.5 19.9688 20.3281 20.5313 21.0938C22.7813 20.3906 25.0625 19.3438 27.4219 17.6094C27.9844 11.6094 26.4688 6.40625 23.7188 1.76563ZM9.29688 14.4375C7.9375 14.4375 6.82813 13.1875 6.82813 11.6563C6.82813 10.125 7.90625 8.875 9.29688 8.875C10.6875 8.875 11.7969 10.125 11.7656 11.6563C11.7656 13.1875 10.6875 14.4375 9.29688 14.4375ZM18.7031 14.4375C17.3438 14.4375 16.2344 13.1875 16.2344 11.6563C16.2344 10.125 17.3125 8.875 18.7031 8.875C20.0938 8.875 21.2031 10.125 21.1719 11.6563C21.1719 13.1875 20.0938 14.4375 18.7031 14.4375Z"/></svg>
+      join support server
+    </a>
   </div>
   <div class="hero-stats">
     <div class="stat-item">
@@ -767,6 +836,31 @@
         </ul>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="section-inner">
+    <div class="section-tag fade-up">community</div>
+    <h2 class="section-title fade-up">need help or want to<br><span style="color:var(--accent)">stay in the loop?</span></h2>
+    <p class="section-sub fade-up">the support server is where bugs get reported, features get suggested, and updates land first.</p>
+
+    <div class="community-card fade-up">
+      <div class="community-card-left">
+        <div class="discord-icon">
+          <svg width="26" height="20" viewBox="0 0 28 21" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M23.7188 1.76563C21.9375 0.9375 20.0313 0.328125 18.0469 0C17.8125 0.421875 17.5313 0.984375 17.3438 1.42188C15.2344 1.10938 13.1406 1.10938 11.0625 1.42188C10.875 0.984375 10.5938 0.421875 10.3594 0C8.375 0.328125 6.45313 0.9375 4.67188 1.76563C1.07813 7.17188 0.09375 12.4219 0.578125 17.6094C2.9375 19.3438 5.21875 20.3906 7.46875 21.0938C8.03125 20.3281 8.53125 19.5 8.95313 18.625C8.125 18.3125 7.33125 17.9219 6.57813 17.4531C6.76563 17.3125 6.95313 17.1563 7.125 17C11.625 19.0625 16.4063 19.0625 20.875 17C21.0469 17.1563 21.2344 17.3125 21.4219 17.4531C20.6688 17.9219 19.875 18.3125 19.0469 18.625C19.4688 19.5 19.9688 20.3281 20.5313 21.0938C22.7813 20.3906 25.0625 19.3438 27.4219 17.6094C27.9844 11.6094 26.4688 6.40625 23.7188 1.76563ZM9.29688 14.4375C7.9375 14.4375 6.82813 13.1875 6.82813 11.6563C6.82813 10.125 7.90625 8.875 9.29688 8.875C10.6875 8.875 11.7969 10.125 11.7656 11.6563C11.7656 13.1875 10.6875 14.4375 9.29688 14.4375ZM18.7031 14.4375C17.3438 14.4375 16.2344 13.1875 16.2344 11.6563C16.2344 10.125 17.3125 8.875 18.7031 8.875C20.0938 8.875 21.2031 10.125 21.1719 11.6563C21.1719 13.1875 20.0938 14.4375 18.7031 14.4375Z"/></svg>
+        </div>
+        <div class="community-card-text">
+          <h3>chuck bird support server</h3>
+          <p>discord.gg/5YjWhDCRCh &nbsp;·&nbsp; open to everyone</p>
+        </div>
+      </div>
+      <a href="https://discord.gg/5YjWhDCRCh" class="btn-discord" target="_blank">
+        join server
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
