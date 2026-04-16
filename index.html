@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuck Bird Bot</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAA2UlEQVR42t2W2w3DIAxFmSCRmIJxukun6xqdpBukSFFR4hcXl1pVLH9EOLkHjANOy7L+1NN/AXLOkwH5bK9HISNfAZqo5ggj+aRxTDLUj5nRdI9vQoAsmQ2wtyQWINYJDtgHVQDRqs/bxzhDi/J1JDL95tvZCMCIDgNKuRkAHh0D1O93FwFiFAW0LNfvjT3gURkglgr+o/FQfwVuR1OEVP00QA097ytxI3XOFSDqHQDIsNVVALLPyCT6p+ms+rGOa586BPAxBm60iDs5oqsI6osiOrvLNb8OfwPZIC16sJV5rAAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --bg2: #141415;
+    --bg3: #1a1a1c;
+    --bg4: #222225;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --text: #e8e6df;
+    --muted: #888580;
+    --faint: #4a4845;
+    --accent: #d4a847;
+    --accent2: #b8922f;
+    --accent-glow: rgba(212,168,71,0.08);
+    --accent-dim: rgba(212,168,71,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(14,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #0e0e0f;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212,168,71,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent-dim);
+    border: 1px solid rgba(212,168,71,0.2);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .line2 { color: var(--accent); }
+
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0e0f;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: var(--bg3);
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid var(--border2);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-secondary:hover { background: var(--bg4); border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 2rem; }
+
+  .section-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  /* FEATURES */
+  #features { background: var(--bg); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 3.5rem;
+  }
+
+  .feature-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .feature-card:hover { background: var(--bg3); }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+  }
+
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .feature-card p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* COMMANDS */
+  #commands { background: var(--bg2); }
+
+  .commands-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cmd-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cmd-tab {
+    padding: 0.35rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .cmd-tab:hover, .cmd-tab.active {
+    background: var(--accent-dim);
+    border-color: rgba(212,168,71,0.25);
+    color: var(--accent);
+  }
+
+  .commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .cmd-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cmd-card:hover {
+    border-color: var(--border2);
+    background: var(--bg4);
+  }
+
+  .cmd-name {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+
+  .cmd-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* PATCHNOTES */
+  #patchnotes { background: var(--bg); }
+
+  .patch-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .patch-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .patch-version {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    padding-top: 0.1rem;
+  }
+
+  .patch-date {
+    font-size: 0.75rem;
+    color: var(--faint);
+    margin-top: 0.2rem;
+    font-weight: 300;
+  }
+
+  .patch-notes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .patch-notes li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-weight: 300;
+  }
+
+  .patch-notes li::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .patch-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+  }
+
+  .tag-new { background: rgba(212,168,71,0.12); color: var(--accent); }
+  .tag-fix { background: rgba(99,153,34,0.12); color: #7db83a; }
+  .tag-qol { background: rgba(55,138,221,0.12); color: #5b9ed4; }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 2rem;
+    background: var(--bg2);
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .cta-inner p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--faint);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--muted); border-bottom: 1px solid var(--border2); transition: color 0.15s; }
+  footer a:hover { color: var(--text); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 2rem; }
+    .patch-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">chuck<span>bird</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">features</a></li>
+    <li><a href="#commands">commands</a></li>
+    <li><a href="#patchnotes">updates</a></li>
+  </ul>
+  <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="nav-cta" target="_blank">add to discord</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">v1.2 · work in progress</div>
+  <h1>
+    the bird economy<br>
+    <span class="line2">built for chaos</span>
+  </h1>
+  <p>a discord economy bot inspired by angry birds. choose your faction, raid pig castles, run heists with your crew, and compete for the King Pig throne.</p>
+  <div class="hero-buttons">
+    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="btn-primary" target="_blank">
+      add to server
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#features" class="btn-secondary">see what it does</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">33+</span>
+      <span class="stat-label">cogs</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">60</span>
+      <span class="stat-label">pet species</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">28</span>
+      <span class="stat-label">explore zones</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">free</span>
+      <span class="stat-label">always</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-tag fade-up">what's in it</div>
+    <h2 class="section-title fade-up">more depth than you'd expect<br>from a bird-themed bot</h2>
+    <p class="section-sub fade-up">built around the friend group experience — competitive, chaotic, and genuinely worth grinding.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🐦</div>
+        <h3>bird vs pig factions</h3>
+        <p>choose a side at level 10. birds raid pig castles and duel for dominance. pigs earn passive income and run fortify. switch sides 3 times before you're branded a traitor — with your own exclusive bonus for it.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">⚔️</div>
+        <h3>raids + king pig title</h3>
+        <p>100 story levels across 4 chapters, plus infinite Go Mode. live boss fights with HP bars and multiplayer damage. the best duelist on the server wears the King Pig crown and gets +8% on all duels until someone takes it.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🏰</div>
+        <h3>guilds + 48h clan wars</h3>
+        <p>create guilds with skill trees and shared banks. challenge rival guilds to 48h wars with real-time scoreboards. passive war points from raids, duels, and fortify runs — every action counts.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🪶</div>
+        <h3>deep economy</h3>
+        <p>earn feathers from jobs, heists, exploring, and stealing. invest, prestige, and upgrade your nest for passive income. the Black Market opens randomly every few hours — don't miss it.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🥚</div>
+        <h3>eggs + 60 pet species</h3>
+        <p>crack eggs to hatch pets across 6 tiers and 60 species — 30 bird, 30 pig. equip 3 at a time for real passive boosts to feathers, duels, raids, and more. send them on expeditions while you're offline.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🗺️</div>
+        <h3>explore + wild</h3>
+        <p>28 hand-crafted zones. go fishing with a live minigame for rare catches, or hunt pigs for materials. build snares in your nest for idle feather collection while you're away.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🌍</div>
+        <h3>world events</h3>
+        <p>auto-trigger every 30-45 minutes. golden storm doubles all income. pig invasion sends 500 pigs at the whole server. egg rain DMs a random egg to every active member. zero setup required.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🎮</div>
+        <h3>minigames + social</h3>
+        <p>scratch cards, blackjack, roulette, race betting, trivia, coinflip, slots. run heists with your crew. put bounties on rivals. poll your server. ask Chuck the magic 8-ball anything.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🏆</div>
+        <h3>trophies + achievements</h3>
+        <p>47 achievements, 10 collectible trophies, profile badges, a flex leaderboard, and a prestige loop. completionists have a lot to chase — and so do the people who just want to dunk on them.</p>
+      </div>
+    </div>
+    <p class="section-sub fade-up" style="margin-top:2rem;font-size:0.85rem">🚧 <strong style="color:var(--text)">work in progress</strong> — pixel art, new features, and balance updates dropping regularly.</p>
+  </div>
+</section>
+
+<!-- COMMANDS -->
+<section id="commands">
+  <div class="section-inner">
+    <div class="section-tag fade-up">commands</div>
+    <h2 class="section-title fade-up">everything starts with <span style="color:var(--accent)">!</span></h2>
+
+    <div class="commands-header fade-up">
+      <p class="section-sub" style="margin:0">prefix is <code style="background:var(--bg4);padding:0.15rem 0.5rem;border-radius:4px;font-size:0.85rem;color:var(--accent)">!</code> — all commands work in any channel the bot has access to.</p>
+      <div class="cmd-filter">
+        <button class="cmd-tab active" onclick="filterCmds('all', this)">all</button>
+        <button class="cmd-tab" onclick="filterCmds('economy', this)">economy</button>
+        <button class="cmd-tab" onclick="filterCmds('explore', this)">explore</button>
+        <button class="cmd-tab" onclick="filterCmds('social', this)">social</button>
+        <button class="cmd-tab" onclick="filterCmds('fun', this)">fun</button>
+      </div>
+    </div>
+
+    <div class="commands-grid" id="cmd-grid">
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!bal</div><div class="cmd-desc">check your feather balance and bank</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!dep [amount]</div><div class="cmd-desc">deposit feathers into your bank</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!work</div><div class="cmd-desc">do a job shift and earn feathers</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!daily</div><div class="cmd-desc">claim your daily reward with streak bonus</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!shop</div><div class="cmd-desc">browse and buy items from the shop</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!inventory</div><div class="cmd-desc">view everything you're carrying</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!auction</div><div class="cmd-desc">list items for auction or bid on others</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!upgrade</div><div class="cmd-desc">spend feathers to upgrade your stats</div></div>
+      <div class="cmd-card" data-cat="economy"><div class="cmd-name">!prestige</div><div class="cmd-desc">reset progress for a permanent multiplier</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!explore [zone]</div><div class="cmd-desc">head out to a zone and find loot</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!search</div><div class="cmd-desc">quick loot run in your current zone</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!fish</div><div class="cmd-desc">go fishing with a minigame for rare catches</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!hunt</div><div class="cmd-desc">hunt for wild items and feathers</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!home</div><div class="cmd-desc">view your nest and collect from your feather bowl</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!expedition</div><div class="cmd-desc">send your pet on a timed loot run</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!steal @user</div><div class="cmd-desc">try your luck and rob someone</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!heist @user</div><div class="cmd-desc">run a heist with friends for big rewards</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!bounty @user</div><div class="cmd-desc">put a bounty on someone's head</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!guild</div><div class="cmd-desc">create or manage your guild</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!leaderboard</div><div class="cmd-desc">see the top feather earners on the server</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!profile</div><div class="cmd-desc">view your stats, badges, pets, and faction</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!coinflip [bet]</div><div class="cmd-desc">flip a coin, double or nothing</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!blackjack [bet]</div><div class="cmd-desc">play blackjack against the house</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!slots [bet]</div><div class="cmd-desc">spin the slot machine</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!scratch</div><div class="cmd-desc">buy a scratch card and try for the jackpot</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!trivia</div><div class="cmd-desc">answer trivia questions for xp and feathers</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!race [bet]</div><div class="cmd-desc">bet on a live 5-bird race</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!8ball [question]</div><div class="cmd-desc">ask chuck a yes/no question. powered by AI if enabled</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!fact</div><div class="cmd-desc">random chuck bird lore fact</div></div>
+      <div class="cmd-card" data-cat="fun"><div class="cmd-name">!poll [question]</div><div class="cmd-desc">create a server vote with up to 4 options</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!duel @user [bet]</div><div class="cmd-desc">challenge someone to a lethal feather duel</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!raid</div><div class="cmd-desc">raid a pig castle across 100 story levels</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!faction</div><div class="cmd-desc">pick bird or pig faction at level 10</div></div>
+      <div class="cmd-card" data-cat="social"><div class="cmd-name">!war</div><div class="cmd-desc">challenge a rival guild to a 48h clan war</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PATCHNOTES -->
+<section id="patchnotes">
+  <div class="section-inner">
+    <div class="section-tag fade-up">updates</div>
+    <h2 class="section-title fade-up">what's changed</h2>
+
+    <div class="patch-list fade-up">
+
+      <div class="patch-item">
+        <div>
+          <div class="patch-version">v1.2</div>
+          <div class="patch-date">apr 2026</div>
+        </div>
+        <ul class="patch-notes">
+          <li>bot is now publicly available <span class="patch-tag tag-new">new</span></li>
+          <li>!8ball — ask Chuck anything. uses AI if enabled, canned Chuck responses otherwise <span class="patch-tag tag-new">new</span></li>
+          <li>!fact — random Chuck Bird lore facts <span class="patch-tag tag-new">new</span></li>
+          <li>!poll — server polls with live vote tracking <span class="patch-tag tag-new">new</span></li>
+          <li>fixed item naming: Feather Charm, Chuck's Favorite Fish <span class="patch-tag tag-fix">fix</span></li>
+          <li>fixed !protect alias (dontsell) <span class="patch-tag tag-fix">fix</span></li>
+          <li>patchnote version numbers unified (all vX.X format) <span class="patch-tag tag-qol">qol</span></li>
+          <li>pixel art is a work in progress — new sprites coming <span class="patch-tag tag-qol">qol</span></li>
+        </ul>
+      </div>
+
+      <div class="patch-item">
+        <div>
+          <div class="patch-version">v1.1</div>
+          <div class="patch-date">apr 2026</div>
+        </div>
+        <ul class="patch-notes">
+          <li>bounty board — put a price on anyone's head, claimed on steal or duel win <span class="patch-tag tag-new">new</span></li>
+          <li>world events auto-trigger every 30-45min in a set channel <span class="patch-tag tag-new">new</span></li>
+          <li>guild system with skill trees, shared bank, and guild raids <span class="patch-tag tag-new">new</span></li>
+          <li>clan wars — 48h guild vs guild with minigames and a full scoreboard <span class="patch-tag tag-new">new</span></li>
+          <li>pet expeditions — send your pet out on timed loot runs <span class="patch-tag tag-new">new</span></li>
+          <li>scratch cards, race betting, and trivia added to minigames <span class="patch-tag tag-new">new</span></li>
+          <li>tournament system for server-run bracket competitions <span class="patch-tag tag-new">new</span></li>
+          <li>home/nest rework with feather bowl and snare improvements <span class="patch-tag tag-qol">qol</span></li>
+          <li>!claim rebuilt as a button hub for daily, bowl, snare, and expeditions <span class="patch-tag tag-qol">qol</span></li>
+          <li>king pig leaderboard with all-time defense tracking <span class="patch-tag tag-qol">qol</span></li>
+        </ul>
+      </div>
+
+      <div class="patch-item">
+        <div>
+          <div class="patch-version">v1.01</div>
+          <div class="patch-date">apr 2026</div>
+        </div>
+        <ul class="patch-notes">
+          <li>!fish and !hunt split into standalone commands <span class="patch-tag tag-qol">qol</span></li>
+          <li>fishing overhaul — 3 new fish, minigame only for non-common catches <span class="patch-tag tag-new">new</span></li>
+          <li>mighty eagle tuna rarity reduced, sell price massively increased <span class="patch-tag tag-qol">qol</span></li>
+          <li>king pig title system added — 5k feather stake, +8% duel bonus <span class="patch-tag tag-new">new</span></li>
+          <li>fish feeding now grants temporary stackable stat boosts <span class="patch-tag tag-new">new</span></li>
+          <li>fuzzy item matching — type "pig tnt" instead of "pig_tnt" <span class="patch-tag tag-qol">qol</span></li>
+          <li>boss fights overhaul — live HP bar, damage scaling, asyncio lock fix <span class="patch-tag tag-fix">fix</span></li>
+          <li>missions bug fixed — daily missions now track before !missions is opened <span class="patch-tag tag-fix">fix</span></li>
+          <li>hard zone rewards rebalanced <span class="patch-tag tag-qol">qol</span></li>
+        </ul>
+      </div>
+
+      <div class="patch-item">
+        <div>
+          <div class="patch-version">v1.0</div>
+          <div class="patch-date">mar 2026</div>
+        </div>
+        <ul class="patch-notes">
+          <li>pig faction fully playable — both factions now complete <span class="patch-tag tag-new">new</span></li>
+          <li>pig duel moves, fortify system, defense dividend <span class="patch-tag tag-new">new</span></li>
+          <li>pet rework — 30 bird + 30 pig species across 6 tiers, 3 equip slots <span class="patch-tag tag-new">new</span></li>
+          <li>trophy system and achievement hunter badge <span class="patch-tag tag-new">new</span></li>
+          <li>level up messages and milestone announcements <span class="patch-tag tag-new">new</span></li>
+          <li>traitor clause for faction switchers <span class="patch-tag tag-new">new</span></li>
+          <li>beta veteran rebirth system for early players <span class="patch-tag tag-new">new</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>ready to add it<br>to your server?</h2>
+    <p>free to use, no setup required beyond the invite. just add it, run !start and you're in.</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="btn-primary" target="_blank" style="font-size:1rem;padding:0.85rem 2rem;">
+      add chuck bird
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>chuck bird bot is a fan-made parody project and is not affiliated with, endorsed by, or connected to Rovio Entertainment or Sega in any way.</p>
+  <p style="margin-top:0.5rem">made with too much free time &nbsp;·&nbsp; <a href="https://github.com/Sych0n/chuck-bird-bot" target="_blank">github</a></p>
+</footer>
+
+<script>
+  function filterCmds(cat, btn) {
+    document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cmd-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
