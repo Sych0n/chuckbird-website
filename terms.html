@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service · Chuck Bird Bot</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAA2UlEQVR42t2W2w3DIAxFmSCRmIJxukun6xqdpBukSFFR4hcXl1pVLH9EOLkHjANOy7L+1NN/AXLOkwH5bK9HISNfAZqo5ggj+aRxTDLUj5nRdI9vQoAsmQ2wtyQWINYJDtgHVQDRqs/bxzhDi/J1JDL95tvZCMCIDgNKuRkAHh0D1O93FwFiFAW0LNfvjT3gURkglgr+o/FQfwVuR1OEVP00QA097ytxI3XOFSDqHQDIsNVVALLPyCT6p+ms+rGOa586BPAxBm60iDs5oqsI6osiOrvLNb8OfwPZIC16sJV5rAAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --bg2: #141415;
+    --bg3: #1a1a1c;
+    --bg4: #222225;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --text: #e8e6df;
+    --muted: #888580;
+    --faint: #4a4845;
+    --accent: #d4a847;
+    --accent2: #b8922f;
+    --accent-dim: rgba(212,168,71,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(14,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #0e0e0f;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 9rem 2rem 5rem;
+  }
+
+  .legal-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-page h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-updated {
+    font-size: 0.8rem;
+    color: var(--faint);
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .legal-page h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 2.5rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .legal-page p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .legal-page ul {
+    list-style: none;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-page ul li {
+    font-size: 0.95rem;
+    color: var(--muted);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-weight: 300;
+  }
+
+  .legal-page ul li::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .legal-page a.inline {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(212,168,71,0.3);
+    transition: color 0.15s;
+  }
+
+  .legal-page a.inline:hover { color: var(--accent2); }
+
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--faint);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--muted); border-bottom: 1px solid var(--border2); transition: color 0.15s; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">chuck<span>bird</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">features</a></li>
+    <li><a href="index.html#commands">commands</a></li>
+    <li><a href="index.html#patchnotes">updates</a></li>
+    <li><a href="index.html#community">community</a></li>
+    <li><a href="privacy.html">privacy</a></li>
+    <li><a href="terms.html">terms</a></li>
+  </ul>
+  <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="nav-cta" target="_blank">add to discord</a>
+</nav>
+
+<main class="legal-page">
+  <div class="legal-tag">legal</div>
+  <h1>terms of service</h1>
+  <p class="legal-updated">last updated: july 17, 2026</p>
+
+  <p>these terms of service (the "terms") apply to Chuck Bird (the "bot"). by adding the bot to a discord server or using its commands, you agree to these terms.</p>
+
+  <h2>1. the basics</h2>
+  <p>Chuck Bird is a free discord economy and game bot. all currencies, items, pets, and rewards in the bot are virtual, have no real-world monetary value, and cannot be exchanged for real money or goods.</p>
+
+  <h2>2. acceptable use</h2>
+  <p>when using the bot, you agree not to:</p>
+  <ul>
+    <li>exploit bugs, glitches, or unintended mechanics for unfair advantage (report them instead)</li>
+    <li>use self-bots, macros, automation, or multiple accounts to farm progress</li>
+    <li>abuse, spam, or attempt to disrupt or overload the bot</li>
+    <li>use the bot in violation of discord's <a class="inline" href="https://discord.com/terms" target="_blank">terms of service</a> or <a class="inline" href="https://discord.com/guidelines" target="_blank">community guidelines</a></li>
+  </ul>
+  <p>violations may result in your data being reset or your access to the bot being blocked, at our discretion.</p>
+
+  <h2>3. availability</h2>
+  <p>the bot is provided free of charge and in active development. we don't guarantee uptime, and features, balancing, or data structures may change, break, or be removed at any time without notice. progress may occasionally be affected by bugs, resets, or rebalancing.</p>
+
+  <h2>4. your data</h2>
+  <p>the bot stores a small amount of data (discord user IDs, server IDs, and game data) to function. how it's collected and handled is described in the <a class="inline" href="privacy.html">privacy policy</a>.</p>
+
+  <h2>5. no warranty</h2>
+  <p>the bot is provided "as is" and "as available", without warranties of any kind. to the maximum extent permitted by law, we are not liable for any loss or damage arising from your use of (or inability to use) the bot — including lost virtual progress, feathers, pets, or items.</p>
+
+  <h2>6. intellectual property</h2>
+  <p>chuck bird is a fan-made parody project and is not affiliated with, endorsed by, or connected to Rovio Entertainment or Sega. all referenced trademarks belong to their respective owners.</p>
+
+  <h2>7. changes to these terms</h2>
+  <p>we may update these terms from time to time. significant changes will be announced in the support server. continued use of the bot after changes means you accept the updated terms.</p>
+
+  <h2>8. contact</h2>
+  <p>questions? email <a class="inline" href="mailto:danieltcpires@gmail.com">danieltcpires@gmail.com</a> or join the <a class="inline" href="https://discord.gg/5YjWhDCRCh" target="_blank">support server</a>.</p>
+</main>
+
+<footer>
+  <p>chuck bird bot is a fan-made parody project and is not affiliated with, endorsed by, or connected to Rovio Entertainment or Sega in any way.</p>
+  <p style="margin-top:0.5rem"><a href="privacy.html">privacy policy</a> &nbsp;·&nbsp; <a href="terms.html">terms of service</a></p>
+</footer>
+
+</body>
+</html>

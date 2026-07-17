@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy · Chuck Bird Bot</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAA2UlEQVR42t2W2w3DIAxFmSCRmIJxukun6xqdpBukSFFR4hcXl1pVLH9EOLkHjANOy7L+1NN/AXLOkwH5bK9HISNfAZqo5ggj+aRxTDLUj5nRdI9vQoAsmQ2wtyQWINYJDtgHVQDRqs/bxzhDi/J1JDL95tvZCMCIDgNKuRkAHh0D1O93FwFiFAW0LNfvjT3gURkglgr+o/FQfwVuR1OEVP00QA097ytxI3XOFSDqHQDIsNVVALLPyCT6p+ms+rGOa586BPAxBm60iDs5oqsI6osiOrvLNb8OfwPZIC16sJV5rAAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --bg2: #141415;
+    --bg3: #1a1a1c;
+    --bg4: #222225;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --text: #e8e6df;
+    --muted: #888580;
+    --faint: #4a4845;
+    --accent: #d4a847;
+    --accent2: #b8922f;
+    --accent-dim: rgba(212,168,71,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(14,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #0e0e0f;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 9rem 2rem 5rem;
+  }
+
+  .legal-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-page h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-updated {
+    font-size: 0.8rem;
+    color: var(--faint);
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .legal-page h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 2.5rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .legal-page p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .legal-page ul {
+    list-style: none;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-page ul li {
+    font-size: 0.95rem;
+    color: var(--muted);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-weight: 300;
+  }
+
+  .legal-page ul li::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .legal-page a.inline {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(212,168,71,0.3);
+    transition: color 0.15s;
+  }
+
+  .legal-page a.inline:hover { color: var(--accent2); }
+
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--faint);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--muted); border-bottom: 1px solid var(--border2); transition: color 0.15s; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">chuck<span>bird</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">features</a></li>
+    <li><a href="index.html#commands">commands</a></li>
+    <li><a href="index.html#patchnotes">updates</a></li>
+    <li><a href="index.html#community">community</a></li>
+    <li><a href="privacy.html">privacy</a></li>
+    <li><a href="terms.html">terms</a></li>
+  </ul>
+  <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="nav-cta" target="_blank">add to discord</a>
+</nav>
+
+<main class="legal-page">
+  <div class="legal-tag">legal</div>
+  <h1>privacy policy</h1>
+  <p class="legal-updated">last updated: july 17, 2026</p>
+
+  <p>this privacy policy explains what data Chuck Bird (the "bot") collects, how it's stored, and how it's used. by using the bot in a discord server, you agree to this policy.</p>
+
+  <h2>1. what we collect</h2>
+  <p>Chuck Bird only collects data needed to make the game work:</p>
+  <ul>
+    <li><strong style="color:var(--text)">discord user IDs</strong> — the numeric ID discord assigns to your account, used to track your progress</li>
+    <li><strong style="color:var(--text)">discord server (guild) IDs</strong> — used to keep server-specific data like leaderboards and settings separate</li>
+    <li><strong style="color:var(--text)">economy and game data</strong> — feather balances, levels, XP, inventory, pets, factions, guilds, achievements, cooldowns, and other gameplay state tied to your user ID</li>
+  </ul>
+  <p>the bot does <strong style="color:var(--text)">not</strong> collect message content (beyond processing commands as they're run), email addresses, real names, IP addresses, or any other personal information.</p>
+
+  <h2>2. how it's stored</h2>
+  <p>data is stored in a database hosted by <a class="inline" href="https://supabase.com" target="_blank">Supabase</a>. access is restricted to the bot and its developer. Supabase's own privacy practices are described in their <a class="inline" href="https://supabase.com/privacy" target="_blank">privacy policy</a>.</p>
+
+  <h2>3. how it's used</h2>
+  <p>your data is used solely to run the bot's features — tracking balances, running raids and duels, showing leaderboards, and saving your progress. that's it.</p>
+
+  <h2>4. no selling, no sharing</h2>
+  <p>we do not sell, rent, trade, or share your data with any third parties. your data is never used for advertising or analytics outside the bot itself.</p>
+
+  <h2>5. data removal</h2>
+  <p>if you want your data deleted, contact us (see below) with your discord user ID, or ask in the <a class="inline" href="https://discord.gg/5YjWhDCRCh" target="_blank">support server</a>. server data is removed when the bot is kicked from a server or on request.</p>
+
+  <h2>6. children</h2>
+  <p>the bot is intended for users who meet discord's minimum age requirement (13, or older depending on your country). we do not knowingly collect data from anyone below that age.</p>
+
+  <h2>7. changes to this policy</h2>
+  <p>this policy may be updated from time to time. significant changes will be announced in the support server. continued use of the bot after changes means you accept the updated policy.</p>
+
+  <h2>8. contact</h2>
+  <p>questions or requests? email <a class="inline" href="mailto:danieltcpires@gmail.com">danieltcpires@gmail.com</a> or join the <a class="inline" href="https://discord.gg/5YjWhDCRCh" target="_blank">support server</a>.</p>
+</main>
+
+<footer>
+  <p>chuck bird bot is a fan-made parody project and is not affiliated with, endorsed by, or connected to Rovio Entertainment or Sega in any way.</p>
+  <p style="margin-top:0.5rem"><a href="privacy.html">privacy policy</a> &nbsp;·&nbsp; <a href="terms.html">terms of service</a></p>
+</footer>
+
+</body>
+</html>
