@@ -604,19 +604,19 @@
     <li><a href="privacy.html">privacy</a></li>
     <li><a href="terms.html">terms</a></li>
   </ul>
-  <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="nav-cta" target="_blank">add to discord</a>
+  <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot+applications.commands" class="nav-cta" target="_blank">add to discord</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">v1 · now public</div>
+  <div class="hero-badge">v1.1 · slash commands are live</div>
   <h1>
     the bird economy<br>
     <span class="line2">built for chaos</span>
   </h1>
   <p>a discord economy bot inspired by angry birds. choose your faction, raid pig castles, run heists with your crew, and compete for the King Pig throne.</p>
   <div class="hero-buttons">
-    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="btn-primary" target="_blank">
+    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot+applications.commands" class="btn-primary" target="_blank">
       add to server
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -654,6 +654,11 @@
     <p class="section-sub fade-up">built around the friend group experience — competitive, chaotic, and genuinely worth grinding.</p>
 
     <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💬</div>
+        <h3>chuck talks back</h3>
+        <p>chuck is an AI bird with an attitude — @mention him and he answers. roasts, hype, trash talk, even reacting to images. he remembers what you said, he holds grudges against Red Bird, and he wakes up in a different mood every day that changes the whole economy.</p>
+      </div>
       <div class="feature-card fade-up">
         <div class="feature-icon">🐦</div>
         <h3>bird vs pig factions</h3>
@@ -711,7 +716,7 @@
     <h2 class="section-title fade-up">everything starts with <span style="color:var(--accent)">!</span></h2>
 
     <div class="commands-header fade-up">
-      <p class="section-sub" style="margin:0">prefix is <code style="background:var(--bg4);padding:0.15rem 0.5rem;border-radius:4px;font-size:0.85rem;color:var(--accent)">!</code> — all commands work in any channel the bot has access to.</p>
+      <p class="section-sub" style="margin:0">prefix is <code style="background:var(--bg4);padding:0.15rem 0.5rem;border-radius:4px;font-size:0.85rem;color:var(--accent)">!</code> — and the most-used commands also work as <code style="background:var(--bg4);padding:0.15rem 0.5rem;border-radius:4px;font-size:0.85rem;color:var(--accent)">/</code> slash commands. same game, two ways to play.</p>
       <div class="cmd-filter">
         <button class="cmd-tab active" onclick="filterCmds('all', this)">all</button>
         <button class="cmd-tab" onclick="filterCmds('economy', this)">economy</button>
@@ -731,8 +736,8 @@
       <div class="cmd-card" data-cat="economy"><div class="cmd-name">!auction</div><div class="cmd-desc">list items for auction or bid on others</div></div>
       <div class="cmd-card" data-cat="economy"><div class="cmd-name">!upgrade</div><div class="cmd-desc">spend feathers to upgrade your stats</div></div>
       <div class="cmd-card" data-cat="economy"><div class="cmd-name">!prestige</div><div class="cmd-desc">reset progress for a permanent multiplier</div></div>
-      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!explore [zone]</div><div class="cmd-desc">head out to a zone and find loot</div></div>
-      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!search</div><div class="cmd-desc">quick loot run in your current zone</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!search</div><div class="cmd-desc">pick a zone and explore for feathers, xp, and eggs</div></div>
+      <div class="cmd-card" data-cat="explore"><div class="cmd-name">!ez</div><div class="cmd-desc">low-effort pocket change on a 5s cooldown</div></div>
       <div class="cmd-card" data-cat="explore"><div class="cmd-name">!fish</div><div class="cmd-desc">go fishing with a minigame for rare catches</div></div>
       <div class="cmd-card" data-cat="explore"><div class="cmd-name">!hunt</div><div class="cmd-desc">hunt for wild items and feathers</div></div>
       <div class="cmd-card" data-cat="explore"><div class="cmd-name">!home</div><div class="cmd-desc">view your nest and collect from your feather bowl</div></div>
@@ -767,6 +772,26 @@
     <h2 class="section-title fade-up">what's changed</h2>
 
     <div class="patch-list fade-up">
+
+      <div class="patch-item">
+        <div>
+          <div class="patch-version">v1.1</div>
+          <div class="patch-date">The Slash & Mood Update · jul 2026</div>
+        </div>
+        <ul class="patch-notes">
+          <li>slash commands — /bal /profile /daily /work /duel /heist /shop and 16 more, alongside the classic ! commands <span class="patch-tag tag-new">new</span></li>
+          <li>chuck's mood: he wakes up different every day, and it changes your income multipliers. deal with it <span class="patch-tag tag-new">new</span></li>
+          <li>guild boss — the leader pays 250k from the guild bank to summon THE PIG WARLORD. 10 minutes, guild only, everyone gets paid by damage <span class="patch-tag tag-new">new</span></li>
+          <li>voting pays: 2,500 feathers + an enchanted egg per top.gg vote (double on weekends). !vote shows your cooldown, chuck DMs when it's ready <span class="patch-tag tag-new">new</span></li>
+          <li>referrals — !invitedby @user within 7 days of joining rewards you both. 5+ recruits = Flock Builder badge <span class="patch-tag tag-new">new</span></li>
+          <li>support server bonus — join and claim a one-time 15,000 feather !supportbonus <span class="patch-tag tag-new">new</span></li>
+          <li>big-update notices with a "DM me the patchnotes" button, plus !chuckannounce — chuck reads the news out loud <span class="patch-tag tag-new">new</span></li>
+          <li>wild shop now lives inside !shop as a category — same prices, less clicking <span class="patch-tag tag-qol">qol</span></li>
+          <li>amount shortcuts everywhere: 50k / 2.5m / half / max in bets, gives, deposits, and egg cracking <span class="patch-tag tag-qol">qol</span></li>
+          <li>faster commands, chuckier error messages, rebuilt new-player welcome DMs <span class="patch-tag tag-qol">qol</span></li>
+          <li>fixed: !help and all dropdown menus, plus slash commands going stale after restarts <span class="patch-tag tag-fix">fix</span></li>
+        </ul>
+      </div>
 
       <div class="patch-item">
         <div>
@@ -1075,7 +1100,7 @@
   <div class="cta-inner">
     <h2>ready to add it<br>to your server?</h2>
     <p>free to use, no setup required beyond the invite. just add it, run !start and you're in.</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot" class="btn-primary" target="_blank" style="font-size:1rem;padding:0.85rem 2rem;">
+    <a href="https://discord.com/oauth2/authorize?client_id=1442304938515497111&permissions=354368&integration_type=0&scope=bot+applications.commands" class="btn-primary" target="_blank" style="font-size:1rem;padding:0.85rem 2rem;">
       add chuck bird
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
